@@ -1,0 +1,1880 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="manifest" href="site.webmanifest">
+    <title>HGH</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #fafafa;
+            --surface: #ffffff;
+            --border: #e5e5e5;
+            --text: #111111;
+            --muted: #888888;
+            --subtle: #f5f5f5;
+            --accent: #111111;
+            --green: #16a34a;
+            --radius: 12px;
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0a0a0a;
+                --surface: #111111;
+                --border: #222222;
+                --text: #fafafa;
+                --muted: #666666;
+                --subtle: #1a1a1a;
+                --accent: #fafafa;
+            }
+        }
+
+        html {
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
+            min-height: 100dvh;
+            padding: env(safe-area-inset-top, 0) env(safe-area-inset-right, 0) env(safe-area-inset-bottom, 0) env(safe-area-inset-left, 0);
+        }
+
+        /* ─── Layout ─────────────────────────────────────────────── */
+        .page {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 48px 20px 80px;
+        }
+
+        @media (min-width: 768px) {
+            .page {
+                padding: 64px 32px 80px;
+            }
+        }
+
+        /* ─── Section ─────────────────────────────────────────────── */
+        .section {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            padding: 0 16px;
+            margin-bottom: 8px;
+            margin-top: 32px;
+        }
+
+        .section:first-child {
+            margin-top: 0;
+        }
+
+        /* ─── Row ─────────────────────────────────────────────────── */
+        .row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0 16px;
+            height: 56px;
+            border-bottom: 1px solid var(--border);
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+            transition: background 0.15s;
+            -webkit-tap-highlight-color: transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .row:last-child {
+            border-bottom: none;
+        }
+
+        .row:active {
+            background: var(--subtle);
+        }
+
+        @media (hover: hover) {
+            .row:hover {
+                background: var(--subtle);
+            }
+        }
+
+        /* ─── Row Icon ────────────────────────────────────────────── */
+        .row-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            background: var(--subtle);
+            color: var(--text);
+        }
+
+        .row-icon svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .row-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: inherit;
+            display: block;
+        }
+
+        /* Logo icons: transparent background, no border, like float PNGs */
+        .row-icon.logo {
+            background: transparent;
+            border: none;
+            overflow: visible;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .row-icon.logo {
+                background: transparent;
+                border: none;
+            }
+        }
+
+        /* Unified brand logo styling with max-bounds for optical consistency */
+        .row-icon.logo img {
+            border-radius: 0;
+            max-width: 26px;
+            max-height: 26px;
+            width: auto;
+            height: auto;
+        }
+
+        .row-icon.logo img[alt="Instagram"] {
+            border-radius: 5px;
+        }
+
+        .row-icon.logo img[alt="Locket"] {
+            border-radius: 6px;
+        }
+
+        /* brand tints */
+        .tint-red {
+            background: #fff0f0;
+            color: #dc2626;
+        }
+
+        .tint-blue {
+            background: #eff6ff;
+            color: #2563eb;
+        }
+
+        .tint-orange {
+            background: #fff7ed;
+            color: #ea580c;
+        }
+
+        .tint-teal {
+            background: #f0fdfa;
+            color: #0d9488;
+        }
+
+        .tint-violet {
+            background: #f5f3ff;
+            color: #7c3aed;
+        }
+
+        .tint-fb {
+            background: #eff6ff;
+            color: #1877f2;
+        }
+
+        .tint-ig {
+            background: #fdf2f8;
+            color: #c2185b;
+        }
+
+        .tint-yellow {
+            background: #fefce8;
+            color: #ca8a04;
+        }
+
+        .tint-indigo {
+            background: #eef2ff;
+            color: #4f46e5;
+        }
+
+        .tint-sky {
+            background: #f0f9ff;
+            color: #0284c7;
+        }
+
+        .tint-green {
+            background: #f0fdf4;
+            color: #16a34a;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .tint-red {
+                background: #2a0a0a;
+                color: #f87171;
+            }
+
+            .tint-blue {
+                background: #0a1628;
+                color: #60a5fa;
+            }
+
+            .tint-orange {
+                background: #1f0f05;
+                color: #fb923c;
+            }
+
+            .tint-teal {
+                background: #051412;
+                color: #2dd4bf;
+            }
+
+            .tint-violet {
+                background: #130d1f;
+                color: #a78bfa;
+            }
+
+            .tint-fb {
+                background: #0a1628;
+                color: #60a5fa;
+            }
+
+            .tint-ig {
+                background: #1f0814;
+                color: #f472b6;
+            }
+
+            .tint-yellow {
+                background: #1a1505;
+                color: #fbbf24;
+            }
+
+            .tint-indigo {
+                background: #0f0d28;
+                color: #818cf8;
+            }
+
+            .tint-sky {
+                background: #051520;
+                color: #38bdf8;
+            }
+
+            .tint-green {
+                background: #051408;
+                color: #4ade80;
+            }
+        }
+
+        /* ─── Row Body ────────────────────────────────────────────── */
+        .row-body {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .row-label {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--muted);
+            line-height: 1;
+            margin-bottom: 3px;
+            white-space: nowrap;
+        }
+
+        .row-value {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-decoration: none !important;
+        }
+
+        .row-value a,
+        .row-value a:hover,
+        .row-value a:active {
+            color: inherit !important;
+            text-decoration: none !important;
+        }
+
+        /* ─── Copy button ─────────────────────────────────────────── */
+        .copy-btn {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            border-radius: 7px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .copy-btn svg {
+            width: 14px;
+            height: 14px;
+            position: absolute;
+            transition: opacity 0.15s, transform 0.15s;
+        }
+
+        .copy-btn .ic-copy {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .copy-btn .ic-check {
+            opacity: 0;
+            transform: scale(0.5);
+        }
+
+        .copy-btn.done {
+            border-color: var(--green);
+            color: var(--green);
+            background: #f0fdf4;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .copy-btn.done {
+                background: #051408;
+            }
+        }
+
+        .copy-btn.done .ic-copy {
+            opacity: 0;
+            transform: scale(0.5);
+        }
+
+        .copy-btn.done .ic-check {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        @media (hover: hover) {
+            .copy-btn:hover {
+                border-color: var(--text);
+                color: var(--text);
+                background: var(--subtle);
+            }
+        }
+
+        .copy-btn:active {
+            transform: scale(0.92);
+        }
+
+        /* ─── Chevron (for link rows) ─────────────────────────────── */
+        .row-chevron {
+            flex-shrink: 0;
+            color: var(--muted);
+            opacity: 0.4;
+            display: flex;
+            align-items: center;
+        }
+
+        .row-chevron svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* ─── Toast ───────────────────────────────────────────────── */
+        #toast {
+            position: fixed;
+            left: 50%;
+            bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+            transform: translate3d(-50%, 100px, 0);
+            background: var(--text);
+            color: var(--bg);
+            font-size: 13px;
+            font-weight: 600;
+            font-family: var(--font);
+            padding: 10px 18px;
+            border-radius: 99px;
+            white-space: nowrap;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, .18);
+            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        #toast.show {
+            transform: translate3d(-50%, 0, 0);
+        }
+
+        /* ─── Apple-style Modal ────────────────────────────────────── */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(0px);
+            -webkit-backdrop-filter: blur(0px);
+            opacity: 0;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), backdrop-filter 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .modal-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            width: calc(100% - 40px);
+            max-width: 350px;
+            border-radius: 24px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+            transform: scale(0.9) translate3d(0, 20px, 0);
+            transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .modal-card {
+                background: #161616;
+                border-color: #222222;
+                box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+            }
+        }
+
+        .modal-overlay.active .modal-card {
+            transform: scale(1) translate3d(0, 0, 0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--subtle);
+            border: none;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+            z-index: 10;
+        }
+
+        .modal-close:hover {
+            background: var(--border);
+            transform: scale(1.05);
+        }
+
+        .modal-close:active {
+            transform: scale(0.95);
+        }
+
+        .modal-close svg {
+            width: 12px;
+            height: 12px;
+            stroke-width: 3;
+        }
+
+        .modal-header {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-top: 6px;
+        }
+
+        .modal-logo {
+            width: 38px;
+            height: 38px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        .modal-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text);
+            line-height: 1.3;
+        }
+
+        .modal-subtitle {
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 4px;
+        }
+
+        .modal-body {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #ffffff;
+            padding: 16px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+        }
+
+        .modal-body img {
+            width: 100%;
+            max-width: 220px;
+            height: auto;
+            aspect-ratio: 1;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* ─── Search Container ────────────────────────────────────────── */
+        .search-container {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--surface);
+        }
+
+        .search-input-wrapper {
+            position: relative;
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-input-wrapper svg {
+            position: absolute;
+            left: 12px;
+            width: 16px;
+            height: 16px;
+            color: var(--muted);
+            pointer-events: none;
+        }
+
+        .search-input {
+            width: 100%;
+            height: 44px;
+            padding: 0 36px 0 36px;
+            background: var(--subtle);
+            border: 1px solid transparent;
+            border-radius: 8px;
+            color: var(--text);
+            font-family: var(--font);
+            font-size: 14px;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .search-input:focus {
+            border-color: var(--border);
+            background: var(--surface);
+            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.03);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .search-input:focus {
+                box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.03);
+            }
+        }
+
+        .search-clear-btn {
+            position: absolute;
+            right: 8px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: transparent;
+            border: none;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            padding: 0;
+        }
+
+        .search-clear-btn::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--border);
+            border-radius: 50%;
+            z-index: -1;
+            transition: background 0.2s;
+        }
+
+        .search-clear-btn:hover::after {
+            background: var(--muted);
+        }
+
+        .search-clear-btn:hover {
+            color: var(--surface);
+        }
+
+        .search-clear-btn svg {
+            width: 10px;
+            height: 10px;
+            position: static !important;
+            color: inherit !important;
+            stroke-width: 2.5px;
+        }
+
+        .search-count {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--muted);
+            white-space: nowrap;
+        }
+
+        .email-list {
+            max-height: 350px;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .email-list::-webkit-scrollbar,
+        .gpt-list::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .email-list::-webkit-scrollbar-track,
+        .gpt-list::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .email-list::-webkit-scrollbar-thumb,
+        .gpt-list::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 99px;
+        }
+
+        /* ─── ChatGPT Section ───────────────────────────────────────── */
+        .gpt-group-header {
+            background: var(--subtle);
+            padding: 10px 16px;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--muted);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .gpt-group-header .mother-title {
+            color: var(--text);
+            font-weight: 600;
+            text-transform: none;
+            letter-spacing: normal;
+        }
+
+        .gpt-badge {
+            font-size: 10px;
+            font-weight: 700;
+            padding: 3px 6px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 8px;
+            line-height: 1;
+        }
+
+        .gpt-badge-go {
+            background: #e6f4ea;
+            color: #137333;
+        }
+
+        .gpt-badge-tea {
+            background: #f3e8ff;
+            color: #6b21a8;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .gpt-badge-go {
+                background: #0f3d1b;
+                color: #81c995;
+            }
+            .gpt-badge-tea {
+                background: #2e1065;
+                color: #d8b4fe;
+            }
+        }
+
+        .gpt-list {
+            max-height: 350px;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* ─── Segmented Tabs ────────────────────────────────────────── */
+        .tabs-container {
+            display: flex;
+            background: var(--subtle);
+            padding: 4px;
+            border-radius: var(--radius);
+            margin-bottom: 24px;
+            border: 1px solid var(--border);
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: calc(var(--radius) - 4px);
+            border: none;
+            background: transparent;
+            color: var(--muted);
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            font-family: var(--font);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .tab-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .tab-btn.active {
+            background: var(--surface);
+            color: var(--text);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 8px 16px -8px rgba(0,0,0,0.05);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .tab-btn.active {
+                box-shadow: 0 1px 3px rgba(0,0,0,0.2), 0 8px 16px -8px rgba(0,0,0,0.3);
+            }
+        }
+        
+        /* ─── Tab Content Views ─────────────────────────────────────── */
+        .tab-view {
+            display: none;
+            animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .tab-view.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(4px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+
+        <!-- Segmented Tab Controls -->
+        <div class="tabs-container">
+            <button class="tab-btn active" data-tab="links" onclick="switchTab('links')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                </svg>
+                Links
+            </button>
+            <button class="tab-btn" data-tab="archives" onclick="switchTab('archives')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="21 8 21 21 3 21 3 8"></polyline>
+                    <rect x="1" y="3" width="22" height="5"></rect>
+                    <line x1="10" y1="12" x2="14" y2="12"></line>
+                </svg>
+                Archives
+            </button>
+        </div>
+
+        <div id="view-links" class="tab-view active">
+
+            <!-- ── Bank & ID ──────────────────────────────────────────── -->
+            <div class="section-label">Identity</div>
+        <div class="section">
+
+            <div class="row"
+                onclick="openModal('IMG_5908.PNG', 'Techcombank', 'Nguyen Gia Hieu — 1024080888', 'Techcombank_idJRKH4Cb7_1.png')">
+                <span class="row-icon logo">
+                    <img src="Techcombank_idJRKH4Cb7_1.png" alt="Techcombank">
+                </span>
+                <span class="row-body">
+                    <span class="row-label">Techcombank</span>
+                    <span class="row-value">1024080888</span>
+                </span>
+                <span class="row-chevron">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6" />
+                    </svg>
+                </span>
+            </div>
+
+            <div class="row">
+                <span class="row-icon logo">
+                    <img src="Logo-nen-trang-1.webp" alt="UNETI">
+                </span>
+                <span class="row-body">
+                    <span class="row-label">Student ID</span>
+                    <span class="row-value">23103200043</span>
+                </span>
+                <button class="copy-btn" onclick="e(event); copy('23103200043', this)" title="Copy Student ID">
+                    <svg class="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" />
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                    </svg>
+                    <svg class="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                </button>
+            </div>
+
+        </div>
+
+        <!-- ── Email ───────────────────────────────────────────────── -->
+        <div class="section-label">Email</div>
+        <div class="section">
+
+            <a href="mailto:hegiahe@gmail.com" class="row">
+                <span class="row-icon logo">
+                    <img src="Gmail_icon_(2026) (1).svg" alt="Gmail">
+                </span>
+                <span class="row-body">
+                    <span class="row-label">Personal</span>
+                    <span class="row-value">hegiahe@gmail.com</span>
+                </span>
+                <button class="copy-btn" onclick="e(event); copy('hegiahe@gmail.com', this)" title="Copy email">
+                    <svg class="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" />
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                    </svg>
+                    <svg class="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                </button>
+            </a>
+
+            <a href="mailto:hegiahehe@gmail.com" class="row">
+                <span class="row-icon logo">
+                    <img src="Gmail_icon_(2026) (1).svg" alt="Gmail">
+                </span>
+                <span class="row-body">
+                    <span class="row-label">Work</span>
+                    <span class="row-value">hegiahehe@gmail.com</span>
+                </span>
+                <button class="copy-btn" onclick="e(event); copy('hegiahehe@gmail.com', this)" title="Copy email">
+                    <svg class="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" />
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                    </svg>
+                    <svg class="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                </button>
+            </a>
+
+            <a href="mailto:nghieu.dhmt17a1hn@sv.uneti.edu.vn" class="row">
+                <span class="row-icon logo">
+                    <img src="Logo-nen-trang-1.webp" alt="UNETI">
+                </span>
+                <span class="row-body">
+                    <span class="row-label">University — UNETI</span>
+                    <span class="row-value">nghieu.dhmt17a1hn@sv.uneti.edu.vn</span>
+                </span>
+                <button class="copy-btn" onclick="e(event); copy('nghieu.dhmt17a1hn@sv.uneti.edu.vn', this)"
+                    title="Copy email">
+                    <svg class="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" />
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                    </svg>
+                    <svg class="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                </button>
+            </a>
+
+        </div>
+
+        <!-- ── Social ──────────────────────────────────────────────── -->
+        <div class="section-label">Social</div>
+        <div class="section">
+
+            <a href="https://www.facebook.com/hegiahe" target="_blank" class="row">
+                <span class="row-icon logo">
+                    <img src="Facebook_Logo_2023.png" alt="Facebook">
+                </span>
+                <span class="row-body">
+                    <span class="row-label">Facebook</span>
+                    <span class="row-value">facebook.com/hegiahe</span>
+                </span>
+                <button class="copy-btn" onclick="e(event); copy('https://www.facebook.com/hegiahe', this)"
+                    title="Copy link">
+                    <svg class="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" />
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                    </svg>
+                    <svg class="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                </button>
+            </a>
+
+            <a href="https://www.instagram.com/hegiahe" target="_blank" class="row">
+                <span class="row-icon logo">
+                    <img src="Instagram_icon.png" alt="Instagram">
+                </span>
+                <span class="row-body">
+                    <span class="row-label">Instagram</span>
+                    <span class="row-value">@hegiahe</span>
+                </span>
+                <button class="copy-btn" onclick="e(event); copy('https://www.instagram.com/hegiahe', this)"
+                    title="Copy link">
+                    <svg class="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" />
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                    </svg>
+                    <svg class="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                </button>
+            </a>
+
+            <div class="row"
+                onclick="openModal('IMG_5903.JPG', 'Zalo', 'Nguyen Gia Hieu — Scan QR to connect on Zalo', 'Icon_of_Zalo.svg.png')">
+                <span class="row-icon logo">
+                    <img src="Icon_of_Zalo.svg.png" alt="Zalo">
+                </span>
+                <span class="row-body">
+                    <span class="row-label">Zalo</span>
+                    <span class="row-value">Scan QR Code</span>
+                </span>
+                <span class="row-chevron">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6" />
+                    </svg>
+                </span>
+            </div>
+
+            <a href="https://discord.gg/saTC2c9h" target="_blank" class="row">
+                <span class="row-icon logo">
+                    <img src="Discord_Logo_sans_texte.svg.png" alt="Discord">
+                </span>
+                <span class="row-body">
+                    <span class="row-label">Discord</span>
+                    <span class="row-value">discord.gg/saTC2c9h</span>
+                </span>
+                <button class="copy-btn" onclick="e(event); copy('https://discord.gg/saTC2c9h', this)"
+                    title="Copy link">
+                    <svg class="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" />
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                    </svg>
+                    <svg class="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                </button>
+            </a>
+
+        </div>
+
+        <!-- ── Media ───────────────────────────────────────────────── -->
+        <div class="section-label">Media</div>
+        <div class="section">
+
+            <a href="https://locket.cam/k1ssrsi" target="_blank" class="row">
+                <span class="row-icon logo">
+                    <img src="locket.png" alt="Locket">
+                </span>
+                <span class="row-body">
+                    <span class="row-label">Locket</span>
+                    <span class="row-value">locket.cam/k1ssrsi</span>
+                </span>
+                <button class="copy-btn" onclick="e(event); copy('https://locket.cam/k1ssrsi', this)" title="Copy link">
+                    <svg class="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" />
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                    </svg>
+                    <svg class="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                </button>
+            </a>
+
+            <a href="https://open.spotify.com/user/31qnc5bnqveoiubkah5c5p2la7me?si=aQ2wHq_YQ46dFu9ywOcu1g"
+                target="_blank" class="row">
+                <span class="row-icon logo">
+                    <img src="Spotify_1.png" alt="Spotify">
+                </span>
+                <span class="row-body">
+                    <span class="row-label">Spotify</span>
+                    <span class="row-value">Open Profile</span>
+                </span>
+                <button class="copy-btn"
+                    onclick="e(event); copy('https://open.spotify.com/user/31qnc5bnqveoiubkah5c5p2la7me?si=aQ2wHq_YQ46dFu9ywOcu1g', this)"
+                    title="Copy link">
+                    <svg class="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" />
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                    </svg>
+                    <svg class="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                </button>
+            </a>
+
+        </div>
+
+        <!-- ── Quick Links ─────────────────────────────────────────── -->
+        <div class="section-label">Quick Links</div>
+        <div class="section">
+
+            <a href="https://des.hgh.io.vn" target="_blank" class="row">
+                <span class="row-icon tint-violet">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path
+                            d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                        </path>
+                    </svg>
+                </span>
+                <span class="row-body">
+                    <span class="row-label">Design Portfolio</span>
+                    <span class="row-value">des.hgh.io.vn</span>
+                </span>
+                <button class="copy-btn" onclick="e(event); copy('https://des.hgh.io.vn', this)" title="Copy link">
+                    <svg class="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" />
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                    </svg>
+                    <svg class="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                </button>
+            </a>
+
+            <a href="https://doan2.hgh.io.vn" target="_blank" class="row">
+                <span class="row-icon tint-teal">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <polyline points="4 17 10 11 4 5"></polyline>
+                        <line x1="12" y1="19" x2="20" y2="19"></line>
+                    </svg>
+                </span>
+                <span class="row-body">
+                    <span class="row-label">Project 2</span>
+                    <span class="row-value">doan2.hgh.io.vn</span>
+                </span>
+                <button class="copy-btn" onclick="e(event); copy('https://doan2.hgh.io.vn', this)" title="Copy link">
+                    <svg class="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" />
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                    </svg>
+                    <svg class="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                </button>
+            </a>
+
+
+
+            <a href="https://hima.hgh.io.vn" target="_blank" class="row">
+                <span class="row-icon tint-red">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path
+                            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                        </path>
+                    </svg>
+                </span>
+                <span class="row-body">
+                    <span class="row-label">Hima</span>
+                    <span class="row-value">hima.hgh.io.vn</span>
+                </span>
+                <button class="copy-btn" onclick="e(event); copy('https://hima.hgh.io.vn', this)" title="Copy link">
+                    <svg class="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" />
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                    </svg>
+                    <svg class="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                </button>
+            </a>
+
+            <a href="https://pmt.hgh.io.vn" target="_blank" class="row">
+                <span class="row-icon tint-blue">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                        <polyline points="2 17 12 22 22 17"></polyline>
+                        <polyline points="2 12 12 17 22 12"></polyline>
+                    </svg>
+                </span>
+                <span class="row-body">
+                    <span class="row-label">PMT</span>
+                    <span class="row-value">pmt.hgh.io.vn</span>
+                </span>
+                <button class="copy-btn" onclick="e(event); copy('https://pmt.hgh.io.vn', this)" title="Copy link">
+                    <svg class="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" />
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                    </svg>
+                    <svg class="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                </button>
+            </a>
+
+            <a href="https://sinhvien.uneti.edu.vn/tra-cuu-thong-tin.html" target="_blank" class="row">
+                <span class="row-icon tint-orange">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </span>
+                <span class="row-body">
+                    <span class="row-label">UNETI Info Lookup</span>
+                    <span class="row-value">sinhvien.uneti.edu.vn</span>
+                </span>
+                <button class="copy-btn"
+                    onclick="e(event); copy('https://sinhvien.uneti.edu.vn/tra-cuu-thong-tin.html', this)"
+                    title="Copy link">
+                    <svg class="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" />
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                    </svg>
+                    <svg class="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                </button>
+            </a>
+
+        </div>
+
+        </div> <!-- Closes view-links -->
+
+        <div id="view-archives" class="tab-view">
+            <!-- ── Mail Archival ──────────────────────────────────────── -->
+            <div class="section-label">Mail Archival</div>
+            <div class="section">
+                <div class="search-container">
+                    <div class="search-input-wrapper">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input type="text" id="email-search" class="search-input" placeholder="Search emails..."
+                            oninput="filterEmails()">
+                        <button id="search-clear" class="search-clear-btn" onclick="clearSearch()" aria-label="Clear search"
+                            style="display: none;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg>
+                        </button>
+                    </div>
+                    <span class="search-count" id="search-count">0 emails</span>
+                </div>
+                <div class="email-list" id="email-list">
+                    <!-- Loaded dynamically -->
+                </div>
+            </div>
+
+            <!-- ── ChatGPT Accounts ────────────────────────────────────── -->
+            <div class="section-label">ChatGPT Accounts</div>
+            <div class="section">
+                <div class="search-container">
+                    <div class="search-input-wrapper">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input type="text" id="gpt-search" class="search-input" placeholder="Search ChatGPT accounts..." oninput="filterGpt()">
+                        <button id="gpt-clear" class="search-clear-btn" onclick="clearGptSearch()" aria-label="Clear search" style="display: none;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg>
+                        </button>
+                    </div>
+                    <span class="search-count" id="gpt-count">0 accounts</span>
+                </div>
+                <div class="gpt-list" id="gpt-list">
+                    <!-- Loaded dynamically -->
+                </div>
+            </div>
+
+            <!-- ── Riot Accounts ───────────────────────────────────────── -->
+            <div class="section-label">Riot Accounts</div>
+            <div class="section">
+                <div class="row" onclick="copy('bachtuochili', this.querySelector('.copy-btn'))">
+                    <span class="row-icon logo">
+                        <img src="icons8-riot-games-480.png" alt="Riot Games">
+                    </span>
+                    <span class="row-body">
+                        <span class="row-label">Riot Games</span>
+                        <span class="row-value">bachtuochili</span>
+                    </span>
+                    <button class="copy-btn" onclick="e(event); copy('bachtuochili', this)" title="Copy Username">
+                        <svg class="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="9" y="9" width="13" height="13" rx="2" />
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                        </svg>
+                        <svg class="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- ── Lazada Accounts ─────────────────────────────────────── -->
+            <div class="section-label">Lazada Accounts</div>
+            <div class="section">
+                <div class="row" onclick="copy('9999108374268', this.querySelector('.copy-btn'))">
+                    <span class="row-icon logo">
+                        <img src="laz.png" alt="Lazada">
+                    </span>
+                    <span class="row-body">
+                        <span class="row-label">Lazada</span>
+                        <span class="row-value">9999108374268</span>
+                    </span>
+                    <button class="copy-btn" onclick="e(event); copy('9999108374268', this)" title="Copy ID">
+                        <svg class="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="9" y="9" width="13" height="13" rx="2" />
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                        </svg>
+                        <svg class="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div> <!-- Closes view-archives -->
+
+    </div> <!-- Closes page -->
+
+    <!-- Toast -->
+    <div id="toast">Copied</div>
+
+    <!-- Apple-style Modal Overlay -->
+    <div id="modal-overlay" class="modal-overlay" onclick="closeModal()">
+        <div class="modal-card" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal()" aria-label="Close">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div class="modal-header">
+                <img id="modal-logo" src="" alt="Logo" class="modal-logo">
+                <div id="modal-title" class="modal-title"></div>
+                <div id="modal-subtitle" class="modal-subtitle"></div>
+            </div>
+            <div class="modal-body">
+                <img id="modal-image" src="" alt="Detail Image">
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function e(ev) {
+            ev.preventDefault();
+            ev.stopPropagation();
+        }
+
+        let tid;
+        function copy(text, btn) {
+            // Glitch-free copying on mobile (no zoom, no scroll, no keyboard popup)
+            const t = document.createElement('textarea');
+            t.value = text;
+            t.setAttribute('readonly', '');
+            t.style.position = 'absolute';
+            t.style.left = '-9999px';
+            t.style.fontSize = '16px'; // Prevent iOS auto-zoom
+            document.body.appendChild(t);
+            t.select();
+            t.setSelectionRange(0, 99999); // Safe range for iOS selection
+            try {
+                document.execCommand('copy');
+            } catch (_) {
+                // Async fallback if execCommand fails in modern secure contexts
+                if (navigator.clipboard && window.isSecureContext) {
+                    navigator.clipboard.writeText(text).catch(() => { });
+                }
+            }
+            document.body.removeChild(t);
+
+            // Haptic feedback (Android)
+            if (navigator.vibrate) navigator.vibrate(40);
+
+            // Button state transition
+            btn.classList.add('done');
+            setTimeout(() => btn.classList.remove('done'), 1800);
+
+            // GPU-accelerated Toast Notification
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
+            clearTimeout(tid);
+            tid = setTimeout(() => toast.classList.remove('show'), 2200);
+        }
+
+        // Modal functions
+        function openModal(imageSrc, title, subtitle, logoSrc) {
+            const overlay = document.getElementById('modal-overlay');
+            const modalImg = document.getElementById('modal-image');
+            const modalTitle = document.getElementById('modal-title');
+            const modalSubtitle = document.getElementById('modal-subtitle');
+            const modalLogo = document.getElementById('modal-logo');
+
+            modalImg.src = imageSrc;
+            modalTitle.textContent = title;
+            modalSubtitle.textContent = subtitle;
+
+            if (logoSrc) {
+                modalLogo.src = logoSrc;
+                modalLogo.style.display = 'block';
+            } else {
+                modalLogo.style.display = 'none';
+            }
+
+            // Show overlay
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent main page scrolling
+        }
+
+        function closeModal() {
+            const overlay = document.getElementById('modal-overlay');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Search and filter emails
+        const emails = [
+            "hegiahedirectrelief@gmail.com",
+            "nghieu.dhmt17a1hn@sv.uneti.edu.vn",
+            "hegiahe@gmail.com",
+            "hegiahehe@gmail.com",
+            "hegiahehehe@gmail.com",
+            "onghoangluanguyenvan@gmail.com",
+            "hegiahehang@gmail.com",
+            "hegiahe22@gmail.com",
+            "hegiahemai@gmail.com",
+            "hegiahe123@gmail.com",
+            "hegiahev4@gmail.com",
+            "hegiahev50@gmail.com",
+            "hegiahe100@gmail.com",
+            "hegiahetv@gmail.com",
+            "nguyengianhatban@gmail.com",
+            "nguyenghieu858@gmail.com",
+            "hieugiadaub@gmail.com",
+            "ghieu9184@gmail.com",
+            "hieugiahieu63@gmail.com",
+            "hegiahett@gmail.com",
+            "giahieuanguyen604@gmail.com",
+            "hegiaherr@gmail.com",
+            "hieugia450@gmail.com",
+            "giahieulinhnguyen@gmail.com",
+            "hieyunguyen6@gmail.com",
+            "hegiahe101@gmail.com",
+            "hegiahe11@gmail.com",
+            "hegiahe333@gmail.com",
+            "hegiahe88@gmail.com",
+            "hegiahe99@gmail.com",
+            "hegiahe2130tb@gmail.com",
+            "xeducati959@gmail.com",
+            "hegiahev8@gmail.com",
+            "hegiahe888@gmail.com",
+            "hegiahe3003@gmail.com",
+            "hegiahedeptrai@gmail.com",
+            "hegiahe77@gmail.com",
+            "hegiahe66@gmail.com",
+            "hegiahe33@gmail.com",
+            "hegiahelinh@gmail.com",
+            "vydaola@gmail.com",
+            "420giahieu@gmail.com",
+            "hegiahevv@gmail.com",
+            "bk42class@gmail.com",
+            "hegiahe55@gmail.com",
+            "hegiahe313@gmail.com",
+            "hihegia@gmail.com",
+            "hegiahechid@gmail.com",
+            "hegiahevvv@gmail.com",
+            "hegiahenguyen@gmail.com",
+            "hieugianguyen514@gmail.com",
+            "hegiaheqq@gmail.com",
+            "hegiaheyy@gmail.com",
+            "hegiaheaa@gmail.com",
+            "hegiahebb@gmail.com",
+            "hegiaheee@gmail.com",
+            "hegiaheuu@gmail.com",
+            "hegiahekk@gmail.com",
+            "hegiahenn@gmail.com",
+            "hegiahegg@gmail.com",
+            "hegiahedd@gmail.com",
+            "hegiahemm@gmail.com",
+            "hieujedddwrngyen@gmail.com",
+            "hegiaheff@gmail.com",
+            "hegiahecc@gmail.com",
+            "hegiahexx@gmail.com",
+            "hegiahejj@gmail.com",
+            "hegiahehh@gmail.com",
+            "hegiahepp@gmail.com",
+            "hegiaheoo@gmail.com",
+            "hegiaheww@gmail.com",
+            "hegiaheqqq@gmail.com",
+            "hegiahewww@gmail.com",
+            "hegiaheeee@gmail.com",
+            "hegiaherrr@gmail.com",
+            "hegiahettt@gmail.com",
+            "hegiaheyyy@gmail.com",
+            "hegiaheuuu@gmail.com",
+            "hegiaheiii@gmail.com",
+            "hegiaheooo@gmail.com",
+            "hegiaheppp@gmail.com",
+            "hegiaheaaa@gmail.com",
+            "hegiahesss@gmail.com",
+            "hegiaheddd@gmail.com",
+            "hegiahefff@gmail.com",
+            "hegiaheggg@gmail.com",
+            "hegiahehhh@gmail.com",
+            "hegiahezzz@gmail.com",
+            "hegiahexxx@gmail.com",
+            "hegiaheccc@gmail.com",
+            "hegiahebbb@gmail.com",
+            "hegiahennn@gmail.com",
+            "hegiahemmm@gmail.com",
+            "hegiaheqqqq@gmail.com",
+            "hegiahewwww@gmail.com",
+            "hegiaheeeee@gmail.com",
+            "hegiaherrrr@gmail.com",
+            "hegiahetttt@gmail.com",
+            "hegiaheyyyy@gmail.com",
+            "hegiaheuuuu@gmail.com",
+            "hegiaheoooo@gmail.com",
+            "hegiaheiiii@gmail.com",
+            "hegiahepppp@gmail.com",
+            "hegiaheaaaa@gmail.com",
+            "hegiahessss@gmail.com",
+            "hegiahedddd@gmail.com",
+            "hegiaheffff@gmail.com",
+            "hegiahezzzz@gmail.com",
+            "hegiahehhhh@gmail.com",
+            "hegiahejjjj@gmail.com",
+            "hegiahexxxx@gmail.com",
+            "hegiahecccc@gmail.com",
+            "hegiahevvvv@gmail.com",
+            "hegiahebbbb@gmail.com",
+            "hegiahennnn@gmail.com",
+            "hegiahemmmm@gmail.com",
+            "hegiahe4433@gmail.com",
+            "hegiaheccfff@gmail.com",
+            "hieunguyeb298@gmail.com",
+            "hegiahe57yg@gmail.com",
+            "hegiahe6f@gmail.com",
+            "hegiahetf3@gmail.com",
+            "hegiahefdr@gmail.com",
+            "hegiahe4tcsw@gmail.com",
+            "hegiahe54f@gmail.com",
+            "hegiahe4tfsss@gmail.com",
+            "hegiahe35rtf@gmail.com",
+            "hegiahe356df@gmail.com",
+            "hegiahe3edw@gmail.com",
+            "clanblackwolflazy@gmail.com",
+            "hegiahegggg@gmail.com",
+            "hegiahen@hotmail.com",
+            "hegiaheg@hotmail.com",
+            "hegiahee1@hotmail.com",
+            "hegiahen@outlook.com",
+            "hegiahegg@hotmail.com",
+            "hegianguyen611@gmail.com",
+            "hegiahev3@gmail.com",
+            "hoanghvnh94@gmail.com"
+        ];
+
+        function getProviderLabel(email) {
+            if (email.endsWith('@gmail.com')) return 'Gmail';
+            if (email.endsWith('uneti.edu.vn')) return 'UNETI University';
+            if (email.endsWith('@hotmail.com')) return 'Hotmail';
+            if (email.endsWith('@outlook.com')) return 'Outlook';
+            if (email.includes('mask.me')) return 'Mask.me';
+            return 'Email';
+        }
+
+        function getIconHtml(email) {
+            if (email.endsWith('@gmail.com')) {
+                return `<span class="row-icon logo"><img src="Gmail_icon_(2026) (1).svg" alt="Gmail"></span>`;
+            } else if (email.endsWith('uneti.edu.vn')) {
+                return `<span class="row-icon logo"><img src="Logo-nen-trang-1.webp" alt="UNETI"></span>`;
+            } else if (email.endsWith('@hotmail.com') || email.endsWith('@outlook.com')) {
+                return `<span class="row-icon logo"><img src="Microsoft_Outlook_Icon_(2025–present).svg" alt="Outlook"></span>`;
+            } else if (email.includes('mask.me')) {
+                return `<span class="row-icon logo"><img src="AdGuard_Logo.png" alt="Mask.me"></span>`;
+            } else {
+                return `<span class="row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></span>`;
+            }
+        }
+
+        function renderEmails(filteredList) {
+            const listEl = document.getElementById('email-list');
+            const countEl = document.getElementById('search-count');
+
+            countEl.textContent = `${filteredList.length} ${filteredList.length === 1 ? 'email' : 'emails'}`;
+
+            if (filteredList.length === 0) {
+                listEl.innerHTML = `
+                    <div style="padding: 32px 16px; text-align: center; color: var(--muted); font-size: 14px;">
+                        No matching emails found
+                    </div>
+                `;
+                return;
+            }
+
+            listEl.innerHTML = filteredList.map(email => {
+                const label = getProviderLabel(email);
+                const iconHtml = getIconHtml(email);
+                return `
+                    <div class="row" onclick="copy('${email}', this.querySelector('.copy-btn'))">
+                        ${iconHtml}
+                        <span class="row-body">
+                            <span class="row-label">${label}</span>
+                            <span class="row-value">${email}</span>
+                        </span>
+                        <button class="copy-btn" onclick="e(event); copy('${email}', this)" title="Copy email">
+                            <svg class="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="9" y="9" width="13" height="13" rx="2" />
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                            </svg>
+                            <svg class="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                        </button>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function filterEmails() {
+            const query = document.getElementById('email-search').value.toLowerCase().trim();
+            const clearBtn = document.getElementById('search-clear');
+
+            if (query) {
+                clearBtn.style.display = 'flex';
+            } else {
+                clearBtn.style.display = 'none';
+            }
+
+            const filtered = emails.filter(email => email.toLowerCase().includes(query));
+            renderEmails(filtered);
+        }
+
+        function clearSearch() {
+            const searchInput = document.getElementById('email-search');
+            searchInput.value = '';
+            filterEmails();
+            searchInput.focus();
+        }
+
+        const gptAccounts = [
+            {
+                mother: "hegiahehh@gmail.com",
+                children: [
+                    { email: "hegiahehh@gmail.com", type: "GO" },
+                    { email: "confident.magpie.kxhw@mask.me", type: "GO" },
+                    { email: "supporting.duck.fpbh@mask.me", type: "GO" },
+                    { email: "instant.crawdad.xaqv@mask.me", type: "GO" },
+                    { email: "current.sloth.foff@mask.me", type: "GO" },
+                    { email: "competent.skink.phjx@mask.me", type: "GO" },
+                    { email: "hegiahehh+shopping@gmail.com", type: "GO" },
+                    { email: "hegiahehh+work@gmail.com", type: "GO" },
+                    { email: "hegiahehh+news@gmail.com", type: "GO" },
+                    { email: "hegiahehh+bank@gmail.com", type: "GO" },
+                    { email: "hegiahehh+social@gmail.com", type: "" },
+                    { email: "hegiahehh+shadowgate@gmail.com", type: "" }
+                ]
+            },
+            {
+                mother: "hegiahe@gmail.com",
+                children: [
+                    { email: "relevant.spider.vyrh@mask.me", type: "TEA" },
+                    { email: "salty.wolverine.dwfh@mask.me", type: "TEA" },
+                    { email: "successive.bobolink.koaw@mask.me", type: "TEA" },
+                    { email: "structural.roadrunner.orun@mask.me", type: "TEA" },
+                    { email: "defensive.jaguar.jxes@mask.me", type: "TEA" }
+                ]
+            },
+            {
+                mother: "hegiaheoo@gmail.com",
+                children: [
+                    { email: "hegiaheoo@gmail.com", type: "" },
+                    { email: "hegiaheoo+1@gmail.com", type: "GO" },
+                    { email: "hegiaheoo+2@gmail.com", type: "GO" },
+                    { email: "hegiaheoo+3@gmail.com", type: "GO" },
+                    { email: "hegiaheoo+4@gmail.com", type: "GO" },
+                    { email: "hegiaheoo+5@gmail.com", type: "GO" },
+                    { email: "objective.fish.fzhd@mask.me", type: "GO" },
+                    { email: "characteristic.turtle.sffa@mask.me", type: "GO" },
+                    { email: "excellent.seahorse.hute@mask.me", type: "GO" }
+                ]
+            },
+            {
+                mother: "ngoinhamoimail1@gmail.com",
+                children: [
+                    { email: "ngoinhamoimail1@gmail.com", type: "" },
+                    { email: "ngoinhamoimail1+hieu@gmail.com", type: "GO" },
+                    { email: "ngoinhamoimail1+giahieu@gmail.com", type: "GO" }
+                ]
+            },
+            {
+                mother: "ngoinhamoimail4",
+                children: [
+                    { email: "academic.egret.uium@mask.me", type: "GO" },
+                    { email: "other.vicuna.ners@mask.me(NguyenGiaHieu)", type: "TEA" },
+                    { email: "outdoor.goose.mjgi@mask.me(NguyenGiaHieu)", type: "" }
+                ]
+            },
+            {
+                mother: "onghoangluanguyenvan@gmail.com",
+                children: [
+                    { email: "onghoangluanguyenvan@gmail.com", type: "" },
+                    { email: "printed.cockroach.bodr@mask.me", type: "GO" },
+                    { email: "rubber.dinosaur.dkiq@mask.me", type: "GO" }
+                ]
+            }
+        ];
+
+        function renderGpt(data) {
+            const listEl = document.getElementById('gpt-list');
+            const countEl = document.getElementById('gpt-count');
+            
+            let totalCount = 0;
+            data.forEach(g => totalCount += g.children.length);
+            countEl.textContent = `${totalCount} ${totalCount === 1 ? 'account' : 'accounts'}`;
+            
+            if (totalCount === 0) {
+                listEl.innerHTML = `
+                    <div style="padding: 32px 16px; text-align: center; color: var(--muted); font-size: 14px;">
+                        No matching accounts found
+                    </div>
+                `;
+                return;
+            }
+            
+            listEl.innerHTML = data.map(group => {
+                const groupRows = group.children.map(child => {
+                    const label = getProviderLabel(child.email);
+                    const iconHtml = getIconHtml(child.email);
+                    const badgeHtml = child.type ? `<span class="gpt-badge gpt-badge-${child.type.toLowerCase()}">${child.type}</span>` : '';
+                    
+                    return `
+                        <div class="row" onclick="copy('${child.email}', this.querySelector('.copy-btn'))">
+                            ${iconHtml}
+                            <span class="row-body">
+                                <span class="row-label">${label}${badgeHtml}</span>
+                                <span class="row-value">${child.email}</span>
+                            </span>
+                            <button class="copy-btn" onclick="e(event); copy('${child.email}', this)" title="Copy email">
+                                <svg class="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" />
+                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                                </svg>
+                                <svg class="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg>
+                            </button>
+                        </div>
+                    `;
+                }).join('');
+
+                return `
+                    <div class="gpt-group">
+                        <div class="gpt-group-header">
+                            <span>Parent: <span class="mother-title">${group.mother}</span></span>
+                            <button class="copy-btn" onclick="e(event); copy('${group.mother}', this)" title="Copy mother email" style="width: 24px; height: 24px; border-radius: 5px;">
+                                <svg class="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:11px; height: 11px;">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" />
+                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                                </svg>
+                                <svg class="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:11px; height: 11px;">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg>
+                            </button>
+                        </div>
+                        ${groupRows}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function filterGpt() {
+            const query = document.getElementById('gpt-search').value.toLowerCase().trim();
+            const clearBtn = document.getElementById('gpt-clear');
+            
+            if (query) {
+                clearBtn.style.display = 'flex';
+            } else {
+                clearBtn.style.display = 'none';
+            }
+            
+            const filtered = gptAccounts.map(group => {
+                const matchedChildren = group.children.filter(child => 
+                    child.email.toLowerCase().includes(query) || 
+                    group.mother.toLowerCase().includes(query)
+                );
+                return {
+                    mother: group.mother,
+                    children: matchedChildren
+                };
+            }).filter(group => group.children.length > 0);
+            
+            renderGpt(filtered);
+        }
+
+        function clearGptSearch() {
+            const searchInput = document.getElementById('gpt-search');
+            searchInput.value = '';
+            filterGpt();
+            searchInput.focus();
+        }
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-view').forEach(view => view.classList.remove('active'));
+
+            const btn = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
+            const view = document.getElementById(`view-${tabId}`);
+            
+            if (btn && view) {
+                btn.classList.add('active');
+                view.classList.add('active');
+            }
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderEmails(emails);
+            renderGpt(gptAccounts);
+        });
+
+        // Close on Escape key press
+        window.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+
+</html>
